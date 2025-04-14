@@ -1,19 +1,22 @@
 import java.io.*;
 import java.util.*;
 
-class Student implements Serializable {
+class Student
+{
     int enroll, age;
     String name, branch;
 
-    Student(int enroll, String name, int age, String branch) {
+    Student(int enroll, String name, int age, String branch)
+    {
         this.enroll = enroll;
         this.name = name;
         this.age = age;
         this.branch = branch;
     }
 
-    public String toString() {
-        return 
+    public String toString()
+     {
+        return
         "Enrollment no  ->  " + enroll + "\n" +
         "Name           ->  " + name + "\n" +
          "Age            ->  " + age + "\n" +
@@ -29,6 +32,7 @@ class StudentKeepingRecord
 
     public void AddStudent() 
     {
+        int id = StudentList.size();
         System.out.print("Enter Enrollment No: ");
         int enroll = input.nextInt();
         input.nextLine(); // consume newline
@@ -54,7 +58,7 @@ class StudentKeepingRecord
         {
             FileWriter fw = new FileWriter("Student.txt", true); // true = append mode
             BufferedWriter bw = new BufferedWriter(fw);
-    
+    	    int i=1;
             for (Student s : StudentList)
             {
                 bw.write("Enrollment no  -> " + s.enroll + "\n");
@@ -173,6 +177,9 @@ class StudentKeepingRecord
                     br.readLine();
 
                   // Take new inputs
+		            System.out.print("Enter New Enrollment no: ");
+                    int newenroll = input.nextInt();
+		            input.nextLine();
                     System.out.print("Enter New Name: ");
                     String newName = input.nextLine();
                     System.out.print("Enter New Age: ");
@@ -182,7 +189,7 @@ class StudentKeepingRecord
                     String newBranch = input.nextLine();
 
                    // Add updated student info
-                    updatedData += "Enrollment no  -> " + enroll + "\n";
+                    updatedData += "Enrollment no  -> " + newenroll + "\n";
                     updatedData += "Name           -> " + newName + "\n";
                     updatedData += "Age            -> " + newAge + "\n";
                     updatedData += "Branch         -> " + newBranch + "\n";
@@ -225,14 +232,12 @@ public void deleteByEnroll()
         BufferedReader br = new BufferedReader(fr);
         String line;
         String updatedData = "";
-        boolean found = false;
-
+        boolean found =false;
         while ((line = br.readLine()) != null)
         {
             if (line.contains("Enrollment no") && line.contains(enroll))
             {
                 found = true;
-                // Skip next 4 lines (Name, Age, Branch, separator)
                 br.readLine();
                 br.readLine();
                 br.readLine();
@@ -243,7 +248,7 @@ public void deleteByEnroll()
                 updatedData += line + "\n";
             }
         }
-
+        
         br.close();
 
         if (found)
