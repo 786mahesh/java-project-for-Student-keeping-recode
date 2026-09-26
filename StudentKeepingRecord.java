@@ -177,7 +177,7 @@ class StudentKeepingRecord
                     br.readLine();
 
                   // Take new inputs
-		            System.out.print("Enter New Enrollment no: ");
+		            System.out.print("Enter New Enrollment number: ");
                     int newenroll = input.nextInt();
 		            input.nextLine();
                     System.out.print("Enter New Name: ");
